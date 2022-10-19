@@ -43,7 +43,9 @@ public class JavaDeque {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        Deque deque = new ArrayDeque<>();
+        Deque<Integer> deque = new ArrayDeque<>();
+        HashSet<Integer> set = new HashSet<>();
+
         int n = in.nextInt();
         int m = in.nextInt();
 
@@ -52,19 +54,19 @@ public class JavaDeque {
         for (int i = 0; i < n; i++) {
             int num = in.nextInt();
 
-            if (i == 0) {
-                deque.add(num);
-                max++;
-            } else {
-                if (deque.size() == m) {
-                    deque.removeFirst();
+            deque.add(num);
+            set.add(num);
+
+            if (deque.size() == m) {
+                if (set.size() > max) {
+                    max = set.size();
                 }
 
-                if (!deque.contains(num) && max < m) {
-                    max++;
-                }
+                int fQueueNumber = deque.remove();
 
-                deque.addLast(num);
+                if (!deque.contains(fQueueNumber)) {
+                    set.remove(fQueueNumber);
+                }
             }
         }
 
