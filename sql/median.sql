@@ -1,0 +1,1 @@
+select round(a.lat_n, 4) from station a, station b group by a.lat_n having sum(sign(1 - sign(b.lat_n - a.lat_n ))) = (count(*) + 1) / 2;
